@@ -11,7 +11,6 @@ write_log(f'Запуск программы DessoDDos GUI By XXXs2 в {time.strf
 root = tk.Tk()
 root.title("DessoDDos GUI")
 
-# Задаем фоновое изображение
 background_image = tk.PhotoImage(file="2.png")
 background_label = tk.Label(root, image=background_image)
 background_label.place(x=0, y=0, relwidth=1, relheight=1)
@@ -25,7 +24,6 @@ def start_attack():
 
     write_log(f'Начало атаки на {ip} с использованием протокола {protocol} и метода {method}')
 
-    # Проверяем заполнение всех полей ввода
     if not ip or not protocol or not method or not duration or not speed:
         output_label.config(text="Ошибка: Заполните все поля!")
         return
@@ -95,18 +93,15 @@ def start_attack():
 
     os.system(f'java -jar dessoprogram.jar {ip} {protocol} {method} {duration} {speed}')
 
-    # Обновляем метку для вывода информации о состоянии атаки
     output_label.config(text=f"Состояние атаки: Атака отправлена на айпи - {ip}")
     root.update()
 
     time.sleep(int(duration))
-    # Обновляем метку для вывода информации о состоянии атаки
     output_label.config(text="Состояние атаки: Атака закончена!")
     root.update()
     time.sleep(3)
     return
 
-# Создаем метки и поля ввода для аргументов
 ip_label = tk.Label(root, text="Введите айпи:", font=("Helvetica", 12))
 ip_label.pack(pady=(10, 5))
 ip_entry = tk.Entry(root, font=("Helvetica", 12))
@@ -132,11 +127,9 @@ speed_label.pack(pady=5)
 speed_entry = tk.Entry(root, font=("Helvetica", 12))
 speed_entry.pack()
 
-# Создаем кнопку для запуска атаки
 start_button = tk.Button(root, text="Запустить атаку", font=("Helvetica", 12), command=start_attack)
 start_button.pack(pady=(15, 10))
 
-# Создаем метку для вывода информации о состоянии атаки
 output_label = tk.Label(root, text="Состояние атаки: Вы не запустили атаку")
 output_label.pack()
 
